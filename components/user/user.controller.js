@@ -16,7 +16,11 @@ class UserController {
                     'stack': error.stack
                 });
             } else {
-                return res.status(500).json({ error: 'Internal Server Error, bla bla bla' });
+                return res.status(500).json({
+                    error: 'Internal Server Error',
+                    'msg': error.message,
+                    'stack': error.stack
+                });
             }
         }
     };
