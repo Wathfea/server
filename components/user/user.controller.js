@@ -9,14 +9,14 @@ class UserController {
             const user = await this.userService.addUser(req.body);
             return res.status(201).send(user);
         } catch (error) {
-            if (process.env.NODE_ENV === 'development') {
+            if (process.env.VERCEL_ENV === 'development') {
                 return res.status(500).json({
                     error: 'Internal Server Error',
                     'msg': error.message,
                     'stack': error.stack
                 });
             } else {
-                return res.status(500).json({ error: 'Internal Server Error' });
+                return res.status(500).json({ error: 'Internal Server Error, bla bla bla' });
             }
         }
     };
@@ -26,7 +26,7 @@ class UserController {
             const users = await this.userService.getUsers();
             return res.status(200).send(users);
         } catch (error) {
-            if (process.env.NODE_ENV === 'development') {
+            if (process.env.VERCEL_ENV === 'development') {
                 return res.status(500).json({
                     error: 'Internal Server Error',
                     'msg': error.message,
@@ -44,7 +44,7 @@ class UserController {
             const user = await this.userService.getUser(Number(id));
             return res.status(200).send(user);
         } catch (error) {
-            if (process.env.NODE_ENV === 'development') {
+            if (process.env.VERCEL_ENV === 'development') {
                 return res.status(500).json({
                     error: 'Internal Server Error',
                     'msg': error.message,
@@ -70,7 +70,7 @@ class UserController {
             const user = await this.userService.getUser(userId);
             return res.status(200).send(user);
         } catch (error) {
-            if (process.env.NODE_ENV === 'development') {
+            if (process.env.VERCEL_ENV === 'development') {
                 return res.status(500).json({
                     error: 'Internal Server Error',
                     'msg': error.message,
@@ -91,7 +91,7 @@ class UserController {
             }
             return res.status(200).json({ success: true });
         } catch (error) {
-            if (process.env.NODE_ENV === 'development') {
+            if (process.env.VERCEL_ENV === 'development') {
                 return res.status(500).json({
                     error: 'Internal Server Error',
                     'msg': error.message,
