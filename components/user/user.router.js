@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 
 class UserRouter {
     constructor(userController, authMiddleware) {
@@ -8,30 +8,30 @@ class UserRouter {
 
     get router() {
         const router = express.Router();
-        router.route('/register').post(this.userController.createUser);
+        router.route('/register').post(this.userController.createUser.bind(this.userController));
 
         router
             .use(this.authMiddleware.authorize)
             .route('/current')
-            .get(this.userController.getCurrent);
+            .get(this.userController.getCurrent.bind(this.userController));
 
         router
             .use(this.authMiddleware.authorize)
             .route('/:id')
-            .get(this.userController.getUser);
+            .get(this.userController.getUser.bind(this.userController));
 
         router
             .use(this.authMiddleware.authorize)
             .route('/')
-            .get(this.userController.getUsers);
+            .get(this.userController.getUsers.bind(this.userController));
 
         router
             .use(this.authMiddleware.authorize)
             .route('/:id/can-start-game')
-            .get(this.userController.canStartGame);
+            .get(this.userController.canStartGame.bind(this.userController));
 
         return router;
     }
 }
 
-export default UserRouter;
+module.exports = UserRouter;

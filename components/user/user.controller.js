@@ -10,9 +10,13 @@ class UserController {
             return res.status(201).send(user);
         } catch (error) {
             if (process.env.NODE_ENV === 'development') {
-                return res.status(500).json({error: 'Internal Server Error', 'msg': error.message, 'stack': error.stack});
+                return res.status(500).json({
+                    error: 'Internal Server Error',
+                    'msg': error.message,
+                    'stack': error.stack
+                });
             } else {
-                return res.status(500).json({error: 'Internal Server Error'});
+                return res.status(500).json({ error: 'Internal Server Error' });
             }
         }
     };
@@ -23,23 +27,31 @@ class UserController {
             return res.status(200).send(users);
         } catch (error) {
             if (process.env.NODE_ENV === 'development') {
-                return res.status(500).json({error: 'Internal Server Error', 'msg': error.message, 'stack': error.stack});
+                return res.status(500).json({
+                    error: 'Internal Server Error',
+                    'msg': error.message,
+                    'stack': error.stack
+                });
             } else {
-                return res.status(500).json({error: 'Internal Server Error'});
+                return res.status(500).json({ error: 'Internal Server Error' });
             }
         }
     };
 
     getUser = async (req, res) => {
         try {
-            const {id} = req.params;
+            const { id } = req.params;
             const user = await this.userService.getUser(Number(id));
             return res.status(200).send(user);
         } catch (error) {
             if (process.env.NODE_ENV === 'development') {
-                return res.status(500).json({error: 'Internal Server Error', 'msg': error.message, 'stack': error.stack});
+                return res.status(500).json({
+                    error: 'Internal Server Error',
+                    'msg': error.message,
+                    'stack': error.stack
+                });
             } else {
-                return res.status(500).json({error: 'Internal Server Error'});
+                return res.status(500).json({ error: 'Internal Server Error' });
             }
         }
     };
@@ -59,29 +71,37 @@ class UserController {
             return res.status(200).send(user);
         } catch (error) {
             if (process.env.NODE_ENV === 'development') {
-                return res.status(500).json({error: 'Internal Server Error', 'msg': error.message, 'stack': error.stack});
+                return res.status(500).json({
+                    error: 'Internal Server Error',
+                    'msg': error.message,
+                    'stack': error.stack
+                });
             } else {
-                return res.status(500).json({error: 'Internal Server Error'});
+                return res.status(500).json({ error: 'Internal Server Error' });
             }
         }
-    }
+    };
 
     canStartGame = async (req, res) => {
         try {
-            const {id} = req.params;
+            const { id } = req.params;
             const user = await this.userService.isUserPayed(Number(id));
             if (!user) {
-                return res.status(403).json({error: 'User is not payed'});
+                return res.status(403).json({ error: 'User is not payed' });
             }
-            return res.status(200).json({success: true});
+            return res.status(200).json({ success: true });
         } catch (error) {
             if (process.env.NODE_ENV === 'development') {
-                return res.status(500).json({error: 'Internal Server Error', 'msg': error.message, 'stack': error.stack});
+                return res.status(500).json({
+                    error: 'Internal Server Error',
+                    'msg': error.message,
+                    'stack': error.stack
+                });
             } else {
-                return res.status(500).json({error: 'Internal Server Error'});
+                return res.status(500).json({ error: 'Internal Server Error' });
             }
         }
     };
 }
 
-export default UserController;
+module.exports = UserController;

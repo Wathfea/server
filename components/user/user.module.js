@@ -1,8 +1,8 @@
-import UserController from './user.controller.js';
-import UserService from './user.service.js';
-import UserRouter from './user.router.js';
-import AuthMiddleware from '../auth/auth.middleware.js';
-import AuthService from '../auth/auth.service.js';
+const UserController = require('./user.controller.js');
+const UserService = require('./user.service.js');
+const UserRouter = require('./user.router.js');
+const AuthMiddleware = require('../auth/auth.middleware.js');
+const AuthService = require('../auth/auth.service.js');
 
 const userService = new UserService();
 const authService = new AuthService();
@@ -10,6 +10,6 @@ const authMiddleware = new AuthMiddleware(authService);
 const userController = new UserController(userService, authService);
 const userRouter = new UserRouter(userController, authMiddleware);
 
-export default {
+module.exports = {
   router: userRouter.router,
 };
