@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const loadRoutes = require('./loaders/routes.js');
 
 const corsOptions = {
     origin: '*',
@@ -24,6 +25,8 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
   res.send('About route 🎉 ')
 })
+
+loadRoutes(app);
 
 const start = () => {
     try {
