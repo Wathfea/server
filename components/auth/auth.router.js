@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 
 class AuthRouter {
   constructor(authController) {
@@ -7,9 +7,9 @@ class AuthRouter {
 
   get router() {
     const router = express.Router();
-    router.route('/login').post(this.authController.login);
+    router.route('/login').post(this.authController.login.bind(this.authController));
     return router;
   }
 }
 
-export default AuthRouter;
+module.exports = AuthRouter;

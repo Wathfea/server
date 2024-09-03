@@ -1,5 +1,5 @@
-import bcrypt from 'bcrypt';
-import * as jose from 'jose';
+const bcrypt = require('bcrypt');
+const jose = require('jose');
 
 const SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 const ALGORITHM = 'HS256';
@@ -14,10 +14,10 @@ class AuthService {
     const jwt = await new jose.SignJWT({
       user: { id: user.id, email: user.email },
     })
-      .setProtectedHeader({ alg: ALGORITHM })
-      .setIssuedAt()
-      .setExpirationTime(EXPIRATION_TIME)
-      .sign(SECRET);
+        .setProtectedHeader({ alg: ALGORITHM })
+        .setIssuedAt()
+        .setExpirationTime(EXPIRATION_TIME)
+        .sign(SECRET);
     return { isValid: match, jwt };
   };
 
@@ -31,4 +31,4 @@ class AuthService {
   };
 }
 
-export default AuthService;
+module.exports = AuthService;

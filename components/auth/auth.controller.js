@@ -16,7 +16,7 @@ class AuthController {
           isPayed: user.isPayed,
         };
 
-        return res.status(200).send({ jwt: jwt, user: userData});
+        return res.status(200).send({ jwt: jwt, user: userData });
       }
       return res.status(401).send({ error: 'Invalid email or password' });
     } catch (error) {
@@ -25,4 +25,4 @@ class AuthController {
   };
 }
 
-export default AuthController;
+module.exports = AuthController;

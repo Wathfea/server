@@ -21,12 +21,16 @@ class AuthMiddleware {
       next();
     } catch (error) {
       if (process.env.NODE_ENV === 'development') {
-        return res.status(500).json({error: 'Internal Server Error', 'msg': error.message, 'stack': error.stack});
+        return res.status(500).json({
+          error: 'Internal Server Error',
+          'msg': error.message,
+          'stack': error.stack
+        });
       } else {
-        return res.status(500).json({error: 'Internal Server Error'});
+        return res.status(500).json({ error: 'Internal Server Error' });
       }
     }
   };
 }
 
-export default AuthMiddleware;
+module.exports = AuthMiddleware;
