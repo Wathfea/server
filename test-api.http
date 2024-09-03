@@ -1,0 +1,33 @@
+### Define the base URL
+@BASE_URL = https://server-tribal-digital.vercel.app/
+
+### POST request to create a new user
+POST {{BASE_URL}}/users/register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "password123"
+}
+
+### POST request to login with a user
+POST {{BASE_URL}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "johndoe@example.com",
+  "password": "password123"
+}
+
+> {% client.global.set("auth_token", response.body.jwt); %}
+
+### GET request to determine if a user is paid for the game
+GET {{BASE_URL}}/users/1/can-start-game
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+### GET request to get user details
+GET {{BASE_URL}}/users/1
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
