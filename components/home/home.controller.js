@@ -1,5 +1,5 @@
 class HomeController {
-    getHome = async (_, res) => {
+    async getHome(_, res) {
         try {
             return res.status(200).send('Welcome to the Pullit API');
         } catch (error) {
@@ -10,11 +10,10 @@ class HomeController {
                     'stack': error.stack
                 });
             } else {
-                return res.status(500).json({error: 'Internal Server Error'});
+                return res.status(500).json({ error: 'Internal Server Error' });
             }
         }
-    };
-
+    }
 }
 
-export default HomeController;
+module.exports = HomeController;

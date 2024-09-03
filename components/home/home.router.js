@@ -7,10 +7,10 @@ class HomeRouter {
 
     get router() {
         const router = express.Router();
-        router.route('/').get(this.homeController.getHome);
+        router.route('/').get(this.homeController.getHome.bind(this.homeController));
 
         return router;
     }
 }
 
-export default HomeRouter;
+module.exports = HomeRouter;

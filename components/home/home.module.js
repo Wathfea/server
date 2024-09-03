@@ -4,7 +4,6 @@ const HomeRouter = require('./home.router');
 const homeController = new HomeController();
 const homeRouter = new HomeRouter(homeController);
 
-export default {
+module.exports = {
     router: homeRouter.router,
 };
-
