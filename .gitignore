@@ -1,0 +1,4 @@
+../nodetest/node_modules
+.env
+.vercel
+.idea
