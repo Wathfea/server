@@ -1,5 +1,5 @@
 ### Define the base URL
-@BASE_URL = https://server-tribal-digital.vercel.app/
+@BASE_URL = https://server-tribal-digital.vercel.app
 
 ### POST request to create a new user
 POST {{BASE_URL}}/users/register
@@ -31,3 +31,7 @@ Authorization: Bearer {{auth_token}}
 GET {{BASE_URL}}/users/1
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
+
+### GET home
+GET {{BASE_URL}}
+Content-Type: application/json
