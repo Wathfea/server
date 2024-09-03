@@ -1,7 +1,21 @@
 const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+const corsOptions = {
+    origin: '*',
+    methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204
+};
 
 const app = express()
-const PORT = 8000
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Enable pre-flight
 
 app.get('/', (req, res) => {
   res.send('Hello World')
@@ -13,7 +27,7 @@ app.get('/about', (req, res) => {
 
 const start = () => {
     try {
-        const port = process.env.PORT || 3000;
+        const port = 3000;
         app.listen(port, () =>
             console.log(`✅ Server is listening on port ${port}.........`)
         );
