@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const loadRoutes = require('./loaders/routes.js');
+const homeModule = require("./components/home/home.module");
+
 
 const corsOptions = {
     origin: '*',
@@ -17,16 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)); // Enable pre-flight
+app.use('/', homeModule.router);
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
-
-app.get('/about', (req, res) => {
-  res.send('About route 🎉 ')
-})
-
-loadRoutes(app);
 
 const start = () => {
     try {
