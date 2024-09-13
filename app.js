@@ -24,25 +24,6 @@ app.use('/', homeModule.router);
 app.use('/auth', authModule.router);
 app.use('/users', userModule.router);
 
-// Error-handling middleware
-app.use((err, req, res, next) => {
-    console.error(err.stack); // Log the error stack trace
-
-    // In production, you should use a user-friendly message
-    if (process.env.VERCEL_ENV === 'development') {
-        res.status(500).send({
-            message: 'Internal Server Error',
-            error: err
-        });
-    } else {
-        res.status(500).send({
-            message: 'Internal Server Error',
-            error: err
-        });
-    }
-});
-
-
 const start = () => {
     try {
         const port = 3000;
